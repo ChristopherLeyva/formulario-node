@@ -75,9 +75,9 @@ app.post('/registro', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server running at http://54.165.167.0:${port}`);
 });
 
 app.listen(port, () => {
-    console.log(`Server on port http://3.85.51.133/:${port}`);
+    console.log(`Server on port http://54.165.167.0/:${port}`);
 });
