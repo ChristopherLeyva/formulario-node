@@ -29,24 +29,59 @@ async function connectDB() {
     }
 }
 
+// Validaciones con expresiones regulares
+function validarNombre(nombre) {
+    const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; // Permite letras con tildes, ñ y espacios
+    return regex.test(nombre);
+}
+
+function validarTelefono(telefono) {
+    const regex = /^\d{9,15}$/; // Permite solo números (de 9 a 15 dígitos)
+    return regex.test(telefono);
+}
+
+function validarCorreo(correo) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Valida cualquier correo electrónico estándar
+    return regex.test(correo);
+}
+
+// Endpoint para registrar usuarios
 app.post('/registro', async (req, res) => {
     const { nombre, apellido, telefono, correo, consulta } = req.body;
 
     console.log('Datos recibidos:', req.body); // Verifica los datos recibidos
 
-    if (!nombre || !apellido || !correo || !telefono || !consulta) {
-        return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+    // Validaciones
+    if (!nombre || !validarNombre(nombre)) {
+        return res.status(400).json({ message: 'Nombre inválido. Solo se permiten letras, tildes, ñ y espacios.' });
+    }
+    if (!apellido || !validarNombre(apellido)) {
+        return res.status(400).json({ message: 'Apellido inválido. Solo se permiten letras, tildes, ñ y espacios.' });
+    }
+    if (!telefono || !validarTelefono(telefono)) {
+        return res.status(400).json({ message: 'Teléfono inválido. Solo se permiten números entre 9 y 15 dígitos.' });
+    }
+    if (!correo || !validarCorreo(correo)) {
+        return res.status(400).json({ message: 'Correo electrónico inválido.' });
+    }
+    if (!consulta) {
+        return res.status(400).json({ message: 'El campo consulta es obligatorio.' });
     }
 
     try {
         const conexion = await connectDB();
-        const query = 'INSERT INTO usuarios (Nombre, Apellido, Telefono, Correo,Consulta) VALUES (?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO usuarios (Nombre, Apellido, Telefono, Correo, Consulta) VALUES (?, ?, ?, ?, ?)';
         const [result] = await conexion.execute(query, [nombre, apellido, telefono, correo, consulta]);
         res.status(200).json({ message: 'Usuario registrado exitosamente' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Error al registrar el usuario' });
     }
+});
+
+// Iniciar el servidor
+app.listen(port, () => {
+    console.log(`Server running at http://3.85.51.133:${port}`);
 });
 
 app.listen(port, () => {
