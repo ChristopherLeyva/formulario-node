@@ -1,39 +1,22 @@
-document.getElementById('dynamicForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita el envío del formulario para validar
+ document.getElementById('registroForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                apellido: document.getElementById('apellido').value,
+                telefono: document.getElementById('telefono').value,
+                correo: document.getElementById('correo').value,
+                consulta: document.getElementById('consulta').value
+            };
 
-    // Limpiar errores anteriores
-    document.getElementById('errorNombre').textContent = "";
-    document.getElementById('errorApellido').textContent = "";
-    document.getElementById('errorCorreo').textContent = "";
-
-    // Obtener valores
-    const nombre = document.getElementById('nombre').value;
-    const apellido = document.getElementById('apellido').value;
-    const correo = document.getElementById('correo').value;
-
-    let isValid = true;
-
-    // Validar nombre
-    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
-        document.getElementById('errorNombre').textContent = "El nombre solo puede contener letras y espacios.";
-        isValid = false;
-    }
-
-    // Validar apellido
-    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(apellido)) {
-        document.getElementById('errorApellido').textContent = "El apellido solo puede contener letras y espacios.";
-        isValid = false;
-    }
-
-    // Validar correo
-    if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(correo)) {
-        document.getElementById('errorCorreo').textContent = "El correo debe ser un Gmail válido.";
-        isValid = false;
-    }
-
-    // Si es válido, mostrar alerta
-    if (isValid) {
-        alert("Formulario enviado exitosamente.");
-        document.getElementById('dynamicForm').reset();
-    }
-});
+            try {
+                const response = await fetch('http://3.85.51.133/registro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                const data = await response.json();
+                alert(data.message);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
