@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2/promise'); // O mysql en lugar de mysql2 si no usas promesas
+const mysql = require('mysql2/promise');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -14,20 +14,20 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-const conexion = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'mi_base_datos'
-});
-
-conexion.connect((error) => {
-    if (error) {
-        console.log('Error conectando a la base de datos: ' + error.stack);
-    } else {
+async function connectDB() {
+    try {
+        const conexion = await mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: 'password',
+            database: 'mi_base_datos'
+        });
         console.log('Conectado a la base de datos');
+        return conexion;
+    } catch (error) {
+        console.error('Error conectando a la base de datos: ' + error.stack);
     }
-});
+}
 
 app.post('/registro', async (req, res) => {
     const { nombre, apellido, telefono, correo, consulta } = req.body;
@@ -39,7 +39,8 @@ app.post('/registro', async (req, res) => {
     }
 
     try {
-        const query = 'INSERT INTO usuarios (Nombre, Apellido, Telefono, Correo,Consulta) VALUES (?, ?, ?, ? ,?)';
+        const conexion = await connectDB();
+        const query = 'INSERT INTO usuarios (Nombre, Apellido, Telefono, Correo,Consulta) VALUES (?, ?, ?, ?, ?)';
         const [result] = await conexion.execute(query, [nombre, apellido, telefono, correo, consulta]);
         res.status(200).json({ message: 'Usuario registrado exitosamente' });
     } catch (err) {
