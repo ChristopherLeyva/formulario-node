@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
 
 /Formulario/
 
-var mysql = require('mysql');
 var conexion = mysql.createConnection({
     host: 'localhost',
     user: 'root',
