@@ -3,31 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Dinámico</title>
-    <link rel="stylesheet" href="/public/css/styles.css">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="form-container">
-        <h1>Formulario Dinámico</h1>
-        <form id="dynamicForm">
+    <div class="container">
+        <h1>Registro de Usuario</h1>
+        <form id="registroForm">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre">
-            <div class="error" id="errorNombre"></div>
+            <input type="text" id="nombre" name="nombre" required>
 
             <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" placeholder="Ingresa tu apellido">
-            <div class="error" id="errorApellido"></div>
+            <input type="text" id="apellido" name="apellido" required>
 
-            <label for="correo">Correo Electrónico:</label>
-            <input type="email" id="correo" name="correo" placeholder="Ingresa tu correo">
-            <div class="error" id="errorCorreo"></div>
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
 
-            <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje"></textarea>
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="consulta">Consulta:</label>
+            <textarea id="consulta" name="consulta" rows="4" required></textarea>
 
             <button type="submit">Enviar</button>
         </form>
+        <p id="responseMessage"></p>
     </div>
-    <script src="/public/js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
