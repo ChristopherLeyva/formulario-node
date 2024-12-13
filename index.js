@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = 80;
 
 app.use(cors({
     origin: 'http://3.85.51.133', // Ajusta este valor a tu dominio permitido
