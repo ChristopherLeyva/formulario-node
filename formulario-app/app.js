@@ -10,7 +10,7 @@ app.use(express.static('public'));
 // Rutas
 app.use('/formulario', formularioRoutes);
 
-const PORT = 3000;
+const PORT = 80;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
