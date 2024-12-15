@@ -4,10 +4,10 @@ const router = express.Router();
 
 // Conexión a MySQL
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'tu_contraseña',
-    database: 'formulario_db'
+    host: 'form.cn412v8a1jvl.us-east-1.rds.amazonaws.com',
+    user: 'admin',
+    password: 'form.cn412v8a1jvl.us-east-1.rds.amazonaws.com',
+    database: 'form'
 });
 
 db.connect((err) => {
