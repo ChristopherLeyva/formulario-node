@@ -1,22 +1,19 @@
 {
   "name": "formulario-app",
   "version": "1.0.0",
-  "description": "Formulario de datos para un curso de sistemas operativos, con almacenamiento en MySQL",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["formulario", "express", "mysql", "sistemas operativos"],
-  "author": "Christopher Leyva",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "formulario-app": "file:",
     "mysql2": "^3.11.5"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
   }
 }
