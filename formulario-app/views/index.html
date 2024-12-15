@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Datos</title>
-    <link rel="stylesheet" href="/formulario-app/public/style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <div class="container">
@@ -19,12 +20,17 @@
             <label for="edad">Edad:</label>
             <select id="edad" name="edad" required>
                 <option value="">Seleccione su edad</option>
-                <script>
-                    for (let i = 18; i <= 100; i++) {
-                        document.write(`<option value="${i}">${i}</option>`);
-                    }
-                </script>
             </select>
+            <script>
+                // Genera dinámicamente las opciones de edad
+                const selectEdad = document.getElementById('edad');
+                for (let i = 18; i <= 100; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = i;
+                    selectEdad.appendChild(option);
+                }
+            </script>
 
             <label for="correo">Correo Electrónico:</label>
             <input type="email" id="correo" name="correo" required>
