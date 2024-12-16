@@ -1,175 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Datos</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-    <!-- OVERLAY -->
-    <div class="overlay first"></div>
-    <div class="overlay second"></div>
-    <div class="overlay third"></div>
+<div class="container">
+    <h1>¡INGRESA AL VOLUNTARIADO!</h1>
+    <form id="form-datos" method="POST" action="/formulario">
+        <label for="nombres">Nombres:</label>
+        <input type="text" id="nombres" name="nombres" required pattern="^[a-zA-ZÀ-ÿ\s]+$"
+            title="Solo letras y espacios">
 
-    <!-- ENCABEZADO -->
-    <header class="l-header">
-        <nav class="nav bd-grid">
-            <div>
-                <a href="#" class="nav__logo">Mi Portafolio</a>
-            </div>
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" required pattern="^[a-zA-ZÀ-ÿ\s]+$"
+            title="Solo letras y espacios">
 
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#inicio" class="nav__link">Inicio</a></li>
-                    <li class="nav__item"><a href="#sobre-mi" class="nav__link">Sobre mi</a></li>
-                    <li class="nav__item"><a href="#proyectos" class="nav__link">Proyectos</a></li>
-                    <li class="nav__item"><a href="#contacto" class="nav__link">Contacto</a></li>
-                </ul>
-            </div>
+        <label for="edad">Edad:</label>
+        <select id="edad" name="edad" required>
+            <option value="">Seleccione su edad</option>
+        </select>
+        <script>
+            // Genera dinámicamente las opciones de edad
+            const selectEdad = document.getElementById('edad');
+            for (let i = 18; i <= 100; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                selectEdad.appendChild(option);
+            }
+        </script>
 
-            <div class="nav__toggle" id="nav-toggle">
-                <ion-icon name="menu"></ion-icon>
-            </div>
-        </nav>
-    </header>
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
 
-    <!-- MAIN -->
-    <main class="l-main bd-grid">
-        <!-- Inicio -->
-        <section id="inicio" class="home">
-            <div class="home__information">
-                <span class="home__pressent anime-text">Hola, Mi nombre es</span>
-                <h1 class="home__title anime-text">Christopher</h1>
-                <span class="home__skill anime-text">Analista de Sistemas</span>
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
 
-                <div>
-                    <a href="#" class="home__button anime-text">DESCARGAR CV</a>
-                </div>
-            </div>
-
-            <div class="home__img">
-                <img src="/portafolioleyva/assets/img/img.jpg" alt="">
-            </div>
-
-            <div class="home__social">
-                <a href="https://www.linkedin.com/in/christopherleyvachumpitaz/" target="_blank">
-                    <ion-icon name="logo-linkedin" class="home__social-icon"></ion-icon>
-                </a>
-                <a href="https://www.instagram.com/vac.hrisstt?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                    target="_blank">
-                    <ion-icon name="logo-instagram" class="home__social-icon"></ion-icon>
-                </a>
-                <a href="https://github.com/ChristopherLeyva" target="_blank">
-                    <ion-icon name="logo-github" class="home__social-icon"></ion-icon>
-                </a>
-            </div>
-        </section>
-
-        <!-- Sobre Mi -->
-        <section id="sobre-mi" class="about">
-            <h2 class="about__title">Sobre Mi</h2>
-            <p class="about__description">Como estudiante de Análisis de Sistemas en Valle Grande, he adquirido
-                habilidades técnicas y analíticas que aplico cada día. Mi formación me ha enseñado a traducir
-                necesidades en soluciones tecnológicas, enfocándome en mejorar los procesos y simplificar tareas
-                complejas. Mi objetivo es crear herramientas útiles que hagan la vida académica y administrativa más
-                eficiente, siempre con una mentalidad de aprendizaje y mejora continua.</p>
-        </section>
-
-
-        <!-- Proyectos -->
-        <section id="proyectos" class="projects">
-            <h2 class="projects__title">Proyectos</h2>
-            <div class="projects__grid">
-                <!-- Proyecto 1 -->
-                <div class="project">
-                    <img src="/portafolioleyva/assets/img/proyecto1.jpg" alt="Proyecto 1" class="project__img">
-                    <h3 class="project__title">Proyecto 1</h3>
-                    <p class="project__description">1. Constancia de Matrícula (AppScript):
-                        Automatización de constancias de matrícula con Google Apps Script, gestionando aprobaciones,
-                        rechazos y envío de PDF por correo.
-                    </p>
-                </div>
-
-                <!-- Proyecto 2 -->
-                <div class="project">
-                    <img src="/portafolioleyva/assets/img/proyecto2.jpg" alt="Proyecto 2" class="project__img">
-                    <h3 class="project__title">Proyecto 2</h3>
-                    <p class="project__description">2. Página Web del Producto (ODS 03):
-                        Desarrollo de una web para un producto relacionado con el ODS 3, enfocado en salud y
-                        bienestar.
-                    </p>
-                </div>
-
-                <!-- Proyecto 3 -->
-                <div class="project">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTggPCZzw-t2_cEEQPODQ96FgVad6JELINtg&s"
-                        alt="Proyecto 3" class="project__img">
-                    <h3 class="project__title">Proyecto 3</h3>
-                    <p class="project__description">3. Hackathon:
-                        Participación futura en una hackathon para desarrollar soluciones innovadoras a través de
-                        programación y trabajo en equipo.</p>
-                </div>
-            </div>
-            <div class="container">
-                <h1>¡INGRESA AL VOLUNTARIADO!</h1>
-                <form id="form-datos" method="POST" action="/formulario">
-                    <label for="nombres">Nombres:</label>
-                    <input type="text" id="nombres" name="nombres" required pattern="^[a-zA-ZÀ-ÿ\s]+$"
-                        title="Solo letras y espacios">
-
-                    <label for="apellidos">Apellidos:</label>
-                    <input type="text" id="apellidos" name="apellidos" required pattern="^[a-zA-ZÀ-ÿ\s]+$"
-                        title="Solo letras y espacios">
-
-                    <label for="edad">Edad:</label>
-                    <select id="edad" name="edad" required>
-                        <option value="">Seleccione su edad</option>
-                    </select>
-                    <script>
-                        // Genera dinámicamente las opciones de edad
-                        const selectEdad = document.getElementById('edad');
-                        for (let i = 18; i <= 100; i++) {
-                            const option = document.createElement('option');
-                            option.value = i;
-                            option.textContent = i;
-                            selectEdad.appendChild(option);
-                        }
-                    </script>
-
-                    <label for="correo">Correo Electrónico:</label>
-                    <input type="email" id="correo" name="correo" required>
-
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-
-                    <button type="submit">ENVIAR FORMULARIO</button>
-                </form>
-            </div>
+        <button type="submit">ENVIAR FORMULARIO</button>
+    </form>
+</div>
 </body>
 
 </html>
-
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
-
-<!-- MAIN -->
-<script src="/portafolioleyva/assets/js/main.js"></script>
-
-<!-- ICONS -->
-<script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
-</body>
-
-</html>
-<script>
-    // Código para desplazamiento suave
-    document.querySelectorAll('.nav__link').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-</script>
